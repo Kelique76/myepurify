@@ -14,7 +14,7 @@ class Index extends Component
 
     public function render()
     {
-        $katas = Category::orderBy('id', 'ASC')->paginate(20);
+        $katas = Category::orderBy('id', 'ASC')->paginate(4);
         return view('livewire.admin.category.index', compact('katas'));
     }
 

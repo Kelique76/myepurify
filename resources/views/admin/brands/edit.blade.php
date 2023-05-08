@@ -20,15 +20,24 @@
               @enderror
             </div>
           </div>
-          {{-- <div class="form-group row">
+          <div class="form-group row">
             <label for="slug" class="col-sm-3 col-form-label">Slug</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" value="{{$cats->slug}}" name="slug" id="slug" placeholder="Nama slug">
-              @error('slug')
+             
+                <label>Pilih Kategori</label>
+                <select name="category_id" required class="form-control" id="">
+                  <option value="">-pilih kategori-</option>
+                  @foreach ($catags as $item)
+                  <option value="{{$item->id}}">{{$item->name}}</option>
+                  @endforeach
+                 
+                </select>
+                @error('category_id')
                 <small class="text-danger">{{$message}}</small>
-              @enderror
+                @enderror
+             
             </div>
-          </div> --}}
+          </div>
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label">Status</label>
             <div class="col-sm-9">

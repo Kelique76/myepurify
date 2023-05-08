@@ -27,4 +27,19 @@ class Product extends Model
         'meta_desc',
 
     ];
+
+    public function produkGbr()
+    {
+       return $this->hasMany(Images::class,'product_id','id');
+    }
+
+    public function produkColor()
+    {
+       return $this->hasMany(Productkolor::class,'product_id','id');
+    }
+
+    public function categornya()
+    {
+        return $this->belongsTo(Category::class,'category_id','id');
+    }
 }

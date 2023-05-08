@@ -16,35 +16,35 @@
         </div>
       </div>
       <div class="card-body">
-        <h4 class="card-title">Table Data Purify Kategori Product</h4>
+        <h4 class="card-title">Table Kategori Product</h4>
         
         <div class="table-responsive">
           <table class="table table-hover">
             <thead>
               <tr>
                 <th>No</th>
-                <th>KODE KATZ PURIFY</th>
+                <th>CATZ</th>
                 <th>Gambar</th>
                 <th>Status</th>
                 <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($katas as $kata)
+              @foreach ($katas as $id=> $kata)
               <tr>
-                <td>{{$kata->id}}</td>
+                <td>{{$id+1}}</td>
                 <td>{{$kata->name}}</td>
                 <td class="text-danger"> <img src="{{'http://fundaecomm.test/upload/category/'.$kata->image}}" alt=""> </td>
                 <td><label class="badge badge-danger" style="color: red">
-                  @if ($kata->status== 0)
-                      Aktif
+                  @if ($kata->status== "0")
+                      Ya
                       @else
-                      Pasif
+                      Tdk
                   @endif  
                 </label></td>
                 <td>
-                  <a href="{{url('/admin/categori/'.$kata->id.'/edit')}}"  class="btn btn-warning btn-rounded btn-fw">Ubah</a>
-                  {{-- <a href="#" wire:click='deleteCats({{$kata->id}})' class="btn btn-danger btn-rounded btn-fw" data-bs-toggle="modal" data-bs-target="#exampleModal">Hapus</a> --}}
+                  <a href="{{url('/admin/categori/'.$kata->id.'/edit')}}"  class="btn btn-warning btn-icon dt-center"><i class="mdi mdi-adjust"></i></a>
+                  <a href="{{url('admin/hapuscats/'.$kata->id)}}" onclick="return confirm('Yakin mau hapus Catz ini?')" class="btn btn-danger btn-icon btn-fw" ><i class="mdi mdi mdi-delete"></i></a>
                 </td>
               </tr>
               @endforeach
@@ -54,7 +54,7 @@
             <tfoot>
               <tr>
                 <th>No</th>
-                <th>KODE KATZ PURIFY</th>
+                <th>CATZ</th>
                 <th>Gambar</th>
                 <th>Status</th>
                 <th>Aksi</th>
@@ -70,33 +70,4 @@
     </div>
   </div>
 
-  <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Yakin Mau Hapus Ketegori?</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-
-        <form wire:submit.prevent="destroyCategory()">
-          <div class="modal-body">
-            <h3>Hapus Kategori</h3>
-          </div>
   
-  
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-            <button type="submit" class="btn btn-danger">Hapus</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-
-@push('script')
-  <script>
-    window.addEventListener('close-modal', event=>{$('#exampleModal').hide()});
-  </script>
-@endpush

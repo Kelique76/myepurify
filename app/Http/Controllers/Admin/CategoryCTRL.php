@@ -18,10 +18,20 @@ class CategoryCTRL extends Controller
     {
         //$katas = Category::where('status','1')->get();
        
-        // $katas = Category::orderBy('id','ASC')->paginate(4);
+        $katas = Category::orderBy('id','ASC')->paginate(4);
 
-    //    return view('admin.category.index', compact('katas'));
-       return view('admin.category.index' );
+       return view('admin.category.index', compact('katas'));
+    //    return view('admin.category.index',compact('katas') );
+    }
+
+    public function hpscat($id)
+    {
+        $mrks = Category::find($id);
+        if ($mrks->delete()) {
+            return redirect('admin/category')->with('message', 'Berhasil Hapus Categori');
+        } else {
+            return redirect()->with('message', 'Gagal hapus Categori');
+        }
     }
 
     public function lihat()
@@ -31,7 +41,7 @@ class CategoryCTRL extends Controller
 
     public function tambahkan(CategoryFormRequest $req)
     {
-    $validasiData = $req->validated();
+       $validasiData = $req->validated();
        $catg = new Category();
 
        $catg->name = $validasiData['name'];
@@ -79,6 +89,7 @@ class CategoryCTRL extends Controller
  
             $filenya->move('upload/category/',$namafile);
             $catg->image = $namafile;
+            // $catg->image = $jejaknya.$namafile;
         }
         if($catg->update()){
             return redirect('admin/category')->with('message','Berhasil ubah kategory');

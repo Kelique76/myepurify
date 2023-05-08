@@ -26,11 +26,11 @@
             <thead>
               <tr>
                 <th>No.</th>
-                <th>Nama</th>
-                <th>Slug</th>
+                <th>Nama Prd</th>
+                <th>Masuk Catz</th>
                 <th>Brand</th>
                 <th>Harga</th>
-                <th>Promo</th>
+              
                 <th>Stoks</th>
                 <th>Trend?</th>
                 <th>Status</th>
@@ -38,14 +38,21 @@
               </tr>
             </thead>
             <tbody>
-              @foreach ($prds as $prd)
+              @foreach ($prds as $ki=>$prd)
               <tr>
-                <td>{{$prd->id}}</td>
+                <td>{{$ki+1}}</td>
                 <td>{{$prd->name}}</td>
-                <td>{{$prd->slug}}</td>
+                <td>
+                  @if ($prd->categornya)
+                  {{$prd->categornya->name}}
+                  @else
+                    Liar
+                  @endif
+                </td>
+              
                 <td>{{$prd->brand}}</td>
                 <td>{{$prd->ori_price}}</td>
-                <td>{{$prd->selli_price}}</td>
+             
                 <td>{{$prd->quantity}}</td>
                 <td><label class="badge badge-danger" style="color: red">
                     @if ($prd->trending== 1)
@@ -57,14 +64,15 @@
                
                 <td><label class="badge badge-danger" style="color: red">
                   @if ($prd->status== 0)
-                      Aktif
+                      Ya
                       @else
-                      Pasif
+                      Tdk
                   @endif  
                 </label></td>
                 <td>
-                  <a href="{{url('/admin/categori/'.$prd->id.'/edit')}}"  class="btn btn-warning btn-rounded btn-fw">Ubah</a>
-                  {{-- <a href="#" wire:click='deleteCats({{$prd->id}})' class="btn btn-danger btn-rounded btn-fw" data-bs-toggle="modal" data-bs-target="#exampleModal">Hapus</a> --}}
+                  <a href="{{url('/admin/produk/'.$prd->id.'/edit')}}"  ><i class="mdi mdi-border-color"></i></a>
+                  <a href="{{url('/admin/produkdel/'.$prd->id.'/hapus')}}" onclick="return confirm('Yakin mau hapus produk ini?')" ><i class="mdi mdi-delete menu-icon"></i></a>
+                  
                 </td>
               </tr>
               @endforeach
@@ -74,15 +82,15 @@
             <tfoot>
               <tr>
                 <th>No.</th>
-                <th>Nama</th>
-                <th>Slug</th>
+                <th>Nama Prd</th>
+                <th>Masuk Catz</th>
                 <th>Brand</th>
                 <th>Harga</th>
-                <th>Promo</th>
+              
                 <th>Stoks</th>
                 <th>Trend?</th>
                 <th>Status</th>
-                <th>Aksi</th>
+                <th>Aksi</th> 
               </tr>
             </tfoot>
             
@@ -99,7 +107,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Yakin Mau Hapus Ketegori?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Yakin Mau Hapus Produk?</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 

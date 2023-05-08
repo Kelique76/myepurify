@@ -14,29 +14,28 @@ class BrandCTRL extends Controller
 
     public function index()
     {
-        //$katas = Category::where('status','1')->get();
-
-        // $katas = Category::orderBy('id','ASC')->paginate(4);
-
-        //    return view('admin.category.index', compact('katas'));
+        
         return view('admin.brands.index');
     }
 
     public function nambah()
     {
-        return view('admin.brands.tambah');
+        $catz = Category::where('status','0')->get();
+        return view('admin.brands.tambah', compact('catz'));
     }
 
     public function tambahkan(Request $req)
     {
         $req->validate([
             'name' => 'required',
+            'category_id'=> 'required'
 
 
         ]);
         $brds = new Brand();
 
         $brds->name = $req->name;
+        $brds->category_id = $req->category_id;
         $brds->slug = Str::slug($req->name);
 
         $brds->status = $req->status == true ? "1": "0";
@@ -61,19 +60,21 @@ class BrandCTRL extends Controller
     public function show( $id)
     {
         $cats = Brand::find($id);
-        return view('admin.brands.edit',compact('cats'));
+        $catags = Category::where('status','0')->get();
+        return view('admin.brands.edit',compact('cats', 'catags'));
     }
 
     public function updatekan(Request $req, $id)
     {
         $req->validate([
             'name' => 'required',
-
+            'category_id'=> 'required'
 
         ]);
         $brds = Brand::find($id);
 
         $brds->name = $req->name;
+        $brds->category_id = $req->category_id;
         $brds->slug = Str::slug($req->name);
 
         $brds->status = $req->status == true ? "1": "0";

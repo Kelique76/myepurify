@@ -12,7 +12,7 @@
             @foreach ($errors->all() as $ror)
             <div class="alert alert-danger">{{$ror}}</div>
             @endforeach
-              
+
             @endif
             <form class="forms-sample" action="{{url('admin/nambahiprd')}}" enctype="multipart/form-data" method="POST">
                 @csrf
@@ -34,7 +34,7 @@
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="gambar-tab" type="button" data-bs-target="#gambar-tab-pane"
-                            data-bs-toggle="tab" href="#">Gambar</button>
+                            data-bs-toggle="tab" href="#">Warna & Gambar</button>
 
                     </li>
 
@@ -77,44 +77,45 @@
                             </select>
                         </div>
 
-                        
+
 
                     </div>
                     <div class="tab-pane fade " id="seotag-tab-pane" role="tabpanel" aria-labelledby="home-tab"
                         tabindex="1">
-                        
+
                         <br>
                         <div class="form-group row">
                             <label for="meta_title" class="col-sm-3 col-form-label"> Meta-title</label>
                             <div class="col-sm-9">
-                              <input type="text" class="form-control" name="meta_title" id="meta_title" placeholder="Masukan meta-title">
-                              @error('meta_title')
-                              <small class="text-danger">{{$message}}</small>
-                              @enderror
+                                <input type="text" class="form-control" name="meta_title" id="meta_title"
+                                    placeholder="Masukan meta-title">
+                                @error('meta_title')
+                                <small class="text-danger">{{$message}}</small>
+                                @enderror
                             </div>
-                          </div>
+                        </div>
 
-                          <div class="form-group row">
+                        <div class="form-group row">
                             <label for="meta_key" class="col-sm-3 col-form-label">Meta-Keyword</label>
                             <div class="col-sm-9">
-                              <input type="text" class="form-control" name="meta_key" id="meta_key"
-                                placeholder="Masukkan meta-keyword">
-                              @error('meta_key')
-                              <small class="text-danger">{{$message}}</small>
-                              @enderror
+                                <input type="text" class="form-control" name="meta_key" id="meta_key"
+                                    placeholder="Masukkan meta-keyword">
+                                @error('meta_key')
+                                <small class="text-danger">{{$message}}</small>
+                                @enderror
                             </div>
-                          </div>
+                        </div>
 
-                          <div class="form-group row">
+                        <div class="form-group row">
                             <label for="meta_desc" class="col-sm-3 col-form-label">Meta-Description</label>
                             <div class="col-sm-9">
-                              <input type="text" class="form-control" name="meta_desc" id="meta_desc"
-                                placeholder="Masukkan meta description">
-                              @error('meta_description')
-                              <small class="text-danger">{{$message}}</small>
-                              @enderror
+                                <input type="text" class="form-control" name="meta_desc" id="meta_desc"
+                                    placeholder="Masukkan meta description">
+                                @error('meta_description')
+                                <small class="text-danger">{{$message}}</small>
+                                @enderror
                             </div>
-                          </div>
+                        </div>
 
                     </div>
                     <div class="tab-pane fade " id="detail-tab-pane" role="tabpanel" aria-labelledby="home-tab"
@@ -194,7 +195,7 @@
                             <div class="col-sm-9">
                                 {{-- <input type="text" class="form-control" id="desc" name="desc"
                                     placeholder="Keterangan Lengkap Produk"> --}}
-                                    <textarea name="desc" id="desc" cols="50" rows="20"></textarea>
+                                <textarea name="desc" id="desc" cols="50" rows="20"></textarea>
                                 @error('desc')
                                 <small class="text-danger">{{$message}}</small>
                                 @enderror
@@ -202,7 +203,7 @@
                         </div>
 
 
-                       
+
                     </div>
 
                     <div class="tab-pane fade " id="gambar-tab-pane" role="tabpanel" aria-labelledby="gambar-tab"
@@ -210,13 +211,37 @@
                         <br>
                         <div class="mb-3">
                             <label for="">Unggah Gambar Produk</label>
-                            
-                            <input type="file" name="image" multiple class="form-control">
+
+                            <input type="file" name="image[]" multiple class="form-control">
                         </div>
 
-                        <button type="submit" class="btn btn-primary me-2">Simpan Produk</button>
-                        <a href="{{url('/admin/liatprd')}}"><button class="btn btn-light" type="button">Batal</button></a>
+                        <br>
+                        <div class="mb-3">
+                            <label for="">Variable Warna</label>
+                            <br>
+                            <div class="row">
+                                    <br>
+                                    @forelse ($wrns as $wrn)
+                                    <div class="col-md-3">
+                                        Warna:  <input type="checkbox" name="colors[{{$wrn->id}}]" value="{{$wrn->id}}"> {{$wrn->name}}
+                                        <br>  
+                                        Jumlah: <input type="number" name="clquantity[{{$wrn->id}}]" style="width: 70px; solid: 1px solid">
+                                          </div>
+                                    @empty
+                                        <div class="col-md-12">No Warna</div>
+                                    @endforelse ($wrns as $wrn)
+                                   
+                                  
+                                </div>
+                            </div>
+                           
+                        </div>
+
+                        
                     </div>
+                    <button type="submit" class="btn btn-primary me-2">Simpan Produk</button>
+                        <a href="{{url('/admin/liatprd')}}"><button class="btn btn-light"
+                                type="button">Batal</button></a>
                 </div>
 
 

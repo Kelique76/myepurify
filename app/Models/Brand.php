@@ -10,9 +10,14 @@ class Brand extends Model
     use HasFactory;
 
     protected $table = 'brands';
-    protected $fillable = [
-        'name', 'slug','status'
+    protected $fillable = ['category_id',
+      'name', 'slug','status'
     ];
 
+   
+    public function catznya()
+    {
+       return $this->belongsTo(Category::class,'category_id','id');
+    }
    
 }

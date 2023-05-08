@@ -13,6 +13,22 @@
 
           <div class="form-group row">
             <label for="name" class="col-sm-3 col-form-label">Nama Merk</label>
+           
+            <div class="col-sm-9">
+              <label>Pilih Kategori</label>
+              <select name="category_id" required class="form-control" id="">
+                <option value="">-pilih kategori-</option>
+                @foreach ($catz as $item)
+                <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+               
+              </select>
+              @error('category_id')
+              <small class="text-danger">{{$message}}</small>
+              @enderror
+            </div>
+
+            <label for="name" class="col-sm-3 col-form-label">Nama Merk</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" name="name" id="name" placeholder="Nama Merk">
               @error('name')
