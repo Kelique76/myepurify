@@ -8,9 +8,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
-    <title>MD Mobile</title>
-    <meta name="description" content="Mobilekit HTML Mobile UI Kit">
-    <meta name="keywords" content="bootstrap 5, mobile template, cordova, phonegap, mobile, html" />
+    <title>BCS Adm</title>
+    <meta name="description" content="BCS Admin Work Space">
+    <meta name="keywords" content="Kerja, Kerja, Kerja woooii" />
     <link rel="icon" type="image/png" href="{{asset('assetsm/img/favicon.png')}}" sizes="32x32">
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assetsm/img/icon/192x192.png')}}">
     <link rel="stylesheet" href="{{asset('assetsm/css/style.css')}}">
@@ -26,29 +26,17 @@
     <!-- * loader -->
 
     <!-- App Header -->
-    <div class="appHeader bg-primary scrolled">
+    <div class="appHeader bg-danger scrolled">
         @include('layouts.include.frontend.navbarm')
         <main>
             @yield('content')
         </main>
-        {{-- <div class="left">
-            <a href="#" class="headerButton" data-bs-toggle="offcanvas" data-bs-target="#sidebarPanel">
-                <ion-icon name="menu-outline"></ion-icon>
-            </a>
-        </div>
-        <div class="pageTitle">
-            Discover
-        </div>
-        <div class="right">
-            <a href="#" class="headerButton toggle-searchbox">
-                <ion-icon name="search-outline"></ion-icon>
-            </a>
-        </div> --}}
+      
     </div>
     <!-- * App Header -->
 
     <!-- Search Component -->
-    <div id="search" class="appHeader">
+    <div id="search" class="appHeader" style="color: red">
         <form class="search-form">
             <div class="form-group searchbox">
                 <input type="text" class="form-control" placeholder="Search...">
@@ -144,7 +132,7 @@
                     <p class="card-text">
                         Reusable components designed for the mobile interface and ready to use.
                     </p>
-                    <a href="app-components.html" class="btn btn-primary">
+                    <a href="app-components.html" class="btn btn-danger">
                         <ion-icon name="cube-outline"></ion-icon>
                         Preview
                     </a>
